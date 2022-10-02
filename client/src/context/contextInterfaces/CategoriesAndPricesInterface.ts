@@ -7,4 +7,6 @@ export interface CurrencyInterface {
 export interface CategoriesAndPricesContextInterface {
   categories: string[];
   currencies: CurrencyInterface[];
+  chosenSymbol: string;
+  setChosenSymbol: (val: string) => void;
 }
