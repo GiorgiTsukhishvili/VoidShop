@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import { errorCont } from "./controllers/errorController";
+import itemsRouter from "./routes/itemsRoute";
+import categoriesRouter from "./routes/categoriesRoute";
 
 const app = express();
 
@@ -12,9 +14,9 @@ app.use(
   })
 );
 
-// app.use("/items");
+app.use("/items", itemsRouter);
 
-// app.use("/categories");
+app.use("/categories", categoriesRouter);
 
 app.all("*", errorCont);
 

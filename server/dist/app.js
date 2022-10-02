@@ -7,13 +7,15 @@ const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cors_1 = __importDefault(require("cors"));
 const errorController_1 = require("./controllers/errorController");
+const itemsRoute_1 = __importDefault(require("./routes/itemsRoute"));
+const categoriesRoute_1 = __importDefault(require("./routes/categoriesRoute"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
     origin: "http://localhost:3000",
 }));
-// app.use("/items");
-// app.use("/categories");
+app.use("/items", itemsRoute_1.default);
+app.use("/categories", categoriesRoute_1.default);
 app.all("*", errorController_1.errorCont);
 const port = 5000;
 mongoose_1.default
