@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useCategoriesAndPricesContext } from "../../context/CategoriesAndPricesContext";
 import { ProductsItems } from "./productsInterface";
 import GreenCart from "./../../assets/svg/green-cart.svg";
+import { Link } from "react-router-dom";
 
 const Products = ({ product }: { product: ProductsItems }) => {
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const { chosenSymbol } = useCategoriesAndPricesContext();
 
   return (
-    <div className="ml-[30px]">
+    <Link to={`/product/${product._id}`} className="ml-[30px] cursor-pointer">
       <div
         className={`relative w-[386px] h-[444px] mb-[100px] p-2.5 flex flex-col items-start justify-center text-[#1d1f22] ${
           isHovering && "shadow-lg"
@@ -47,7 +48,7 @@ const Products = ({ product }: { product: ProductsItems }) => {
           //   here must also be logic to add items
         />
       )}
-    </div>
+    </Link>
   );
 };
 
