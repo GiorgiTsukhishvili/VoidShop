@@ -1,15 +1,15 @@
 import React from "react";
 import { Navbar } from "./components";
-import { useCategoriesAndPricesContext } from "./context/CategoriesAndPricesContext";
+import { Route, Routes } from "react-router-dom";
+import { MainPage } from "./pages";
 
 const App = () => {
-  const { categories, currencies } = useCategoriesAndPricesContext();
-
-  // console.log(categories, currencies);
-
   return (
     <div>
       <Navbar />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+      </Routes>
     </div>
   );
 };

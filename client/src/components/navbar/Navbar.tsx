@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useCategoriesAndPricesContext } from "../../context/CategoriesAndPricesContext";
+import { Link } from "react-router-dom";
 import { v4 } from "uuid";
 
 import Logo from "./../../assets/svg/VSF.svg";
@@ -7,20 +8,30 @@ import Arrow from "./../../assets/svg/arrow.svg";
 import Cart from "./../../assets/svg/Empty Cart.svg";
 
 const Navbar = () => {
-  const { categories, currencies, chosenSymbol, setChosenSymbol } =
-    useCategoriesAndPricesContext();
+  const {
+    categories,
+    currencies,
+    chosenSymbol,
+    setChosenSymbol,
+    chosenCategory,
+    setChosenCategory,
+  } = useCategoriesAndPricesContext();
   const [showCurrencies, setShowCurrencies] = useState<boolean>(false);
 
   return (
     <div className="h-[60px] flex items-center justify-between fixed text-[#1d1f22] top-0 bg-white w-full">
       <div className="flex ml-[100px]">
         {categories.map((category) => (
-          <h1
+          <Link
+            to={"/"}
             key={v4()}
-            className="text-[16px] cursor-pointer font-medium uppercase py-[20px] px-[16px] hover:pb-[17px] hover:border-b-[3px] hover:border-green-500"
+            className={`text-[16px] cursor-pointer font-medium uppercase py-[20px] px-[16px]  hover:border-b-[3px] hover:border-green-500 ${
+              chosenCategory === category && "border-b-[3px] border-green-500"
+            }`}
+            onClick={() => setChosenCategory(category)}
           >
             {category}
-          </h1>
+          </Link>
         ))}
       </div>
 

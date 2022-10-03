@@ -23,6 +23,7 @@ export const CategoriesAndPricesProvider = ({
   const [categories, setCategories] = useState<string[]>([]);
   const [currencies, setCurrencies] = useState<CurrencyInterface[]>([]);
   const [chosenSymbol, setChosenSymbol] = useState<string>("$");
+  const [chosenCategory, setChosenCategory] = useState<string>("all");
 
   useEffect(() => {
     const getData = async () => {
@@ -37,7 +38,14 @@ export const CategoriesAndPricesProvider = ({
 
   return (
     <CategoriesAndPricesContext.Provider
-      value={{ categories, currencies, chosenSymbol, setChosenSymbol }}
+      value={{
+        categories,
+        currencies,
+        chosenSymbol,
+        setChosenSymbol,
+        chosenCategory,
+        setChosenCategory,
+      }}
     >
       {children}
     </CategoriesAndPricesContext.Provider>

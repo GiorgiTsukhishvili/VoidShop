@@ -9,4 +9,6 @@ export interface CategoriesAndPricesContextInterface {
   currencies: CurrencyInterface[];
   chosenSymbol: string;
   setChosenSymbol: (val: string) => void;
+  chosenCategory: string;
+  setChosenCategory: (val: string) => void;
 }

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { CategoriesAndPricesProvider } from "./context/CategoriesAndPricesContext";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -10,7 +11,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <CategoriesAndPricesProvider>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </CategoriesAndPricesProvider>
   </React.StrictMode>
 );
