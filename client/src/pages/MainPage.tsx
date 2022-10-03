@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Products } from "../components";
 import { useCategoriesAndPricesContext } from "../context/CategoriesAndPricesContext";
 import * as api from "./../api";
+import { v4 } from "uuid";
 import { MainPageItems } from "./pagesInterfaces/mainPageInterface";
 
 const MainPage = () => {
@@ -33,7 +34,8 @@ const MainPage = () => {
       </div>
 
       <div className="my-[100px] mr-[100px] flex flex-wrap gap-[5%] items-center justify-start">
-        {items.length > 0 && <Products />}
+        {items.length > 0 &&
+          items.map((item) => <Products key={v4()} product={item} />)}
       </div>
     </div>
   );
