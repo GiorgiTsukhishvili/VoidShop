@@ -22,7 +22,7 @@ export const getAllItems = async (req: Request, res: Response) => {
 
 export const getSingleItem = async (req: Request, res: Response) => {
   try {
-    const item = await Items.findById(req.params);
+    const item = await Items.findById(req.params.id);
 
     res.status(200).json({
       status: "success",

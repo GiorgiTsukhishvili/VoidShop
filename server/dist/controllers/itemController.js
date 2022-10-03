@@ -32,7 +32,7 @@ const getAllItems = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.getAllItems = getAllItems;
 const getSingleItem = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const item = yield itemsModel_1.Items.findById(req.params);
+        const item = yield itemsModel_1.Items.findById(req.params.id);
         res.status(200).json({
             status: "success",
             data: {
