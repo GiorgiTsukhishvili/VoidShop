@@ -38,7 +38,7 @@ const HiddenCart = ({ hide }: HiddenCartprops) => {
           My Bag, <span className="font-medium">{savedItems.length} items</span>
         </h1>
         <div>
-          <div className=" h-[450px] overflow-y-auto">
+          <div className=" h-[450px] overflow-y-auto scrollbar">
             {savedItems.map((item) => (
               <div key={v4()} className="w-full flex justify-between">
                 <div>
@@ -56,6 +56,29 @@ const HiddenCart = ({ hide }: HiddenCartprops) => {
                       )[0]
                       .amount.toFixed(2)}
                   </p>
+                </div>
+
+                <div className="flex ">
+                  <div className="flex flex-col  items-center justify-between ml-[16px] pb-[20px] h-full">
+                    <img
+                      src={AddButton}
+                      alt="Add Button"
+                      className="cursor-pointer"
+                    />
+                    <h1 className="text-[16px] leading-[160%] font-medium">
+                      {totalItems}
+                    </h1>
+                    <img
+                      src={RemoveButton}
+                      alt="Remove Button"
+                      className="cursor-pointer"
+                    />
+                  </div>
+                  <img
+                    src={item.gallery[0]}
+                    alt="Product"
+                    className="w-[121px] h-full object-contain ml-[8px]"
+                  />
                 </div>
               </div>
             ))}
