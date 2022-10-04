@@ -7,6 +7,7 @@ import Logo from "./../../assets/svg/VSF.svg";
 import Arrow from "./../../assets/svg/arrow.svg";
 import Cart from "./../../assets/svg/Empty Cart.svg";
 import { useCartItemsContext } from "../../context/CartItemsContext";
+import HiddenCart from "../hiddenCart/HiddenCart";
 
 const Navbar = () => {
   const {
@@ -18,6 +19,7 @@ const Navbar = () => {
     setChosenCategory,
   } = useCategoriesAndPricesContext();
   const [showCurrencies, setShowCurrencies] = useState<boolean>(false);
+  const [showCart, setShowCart] = useState<boolean>(false);
   const { savedItems } = useCartItemsContext();
 
   return (
@@ -48,7 +50,12 @@ const Navbar = () => {
             {currencies.length > 0 && chosenSymbol}
           </h1>
           <img src={Arrow} alt="Arrow" />
-          <img src={Cart} alt="Cart" className="ml-[22px] cursor-pointer" />
+          <img
+            src={Cart}
+            alt="Cart"
+            className="ml-[22px] cursor-pointer"
+            onClick={() => setShowCart((prevState) => !prevState)}
+          />
 
           {savedItems.length > 0 && (
             <h1 className="bg-[#1d1f22] text-white translate-x-[-7px] translate-y-[-7px] rounded-full text-[14p] w-[20px] flex justify-center items-center h-[20px] ">
@@ -77,7 +84,7 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Here must be implemented logic of hidden cart */}
+      {showCart && <HiddenCart hide={setShowCart} />}
     </div>
   );
 };

@@ -11,7 +11,7 @@ const Products = ({ product }: { product: ProductsItems }) => {
   const { addItemToCart } = useCartItemsContext();
 
   return (
-    <div className="relative ml-[30px]">
+    <div className=" ml-[30px]">
       <Link to={`/product/${product._id}`} className="ml-[30px] cursor-pointer">
         <div
           className={`w-[386px] h-[444px] mb-[100px] p-2.5 flex flex-col items-start justify-center text-[#1d1f22] ${
@@ -36,7 +36,7 @@ const Products = ({ product }: { product: ProductsItems }) => {
           </p>
 
           {product.inStock !== "true" && (
-            <p className="absolute text-[#8d8f9a] text-[24px] leading-[160%] font-normal translate-x-[100px] translate-y-[-50px]">
+            <p className="absolute pointer-events-none text-[#8d8f9a] text-[24px] leading-[160%] font-normal translate-x-[100px] translate-y-[-50px]">
               OUT OF STOCK
             </p>
           )}
