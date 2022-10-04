@@ -1,5 +1,5 @@
 import React from "react";
-import { CartPageLeft, CartPageNumber } from "../components";
+import { CartPageImages, CartPageLeft, CartPageNumber } from "../components";
 import { useCartItemsContext } from "../context/CartItemsContext";
 import { v4 } from "uuid";
 
@@ -22,6 +22,7 @@ const CartPage = () => {
 
             <div className="flex">
               <CartPageNumber amount={item.amount!} id={item._id} />
+              <CartPageImages images={item.gallery} />
             </div>
           </div>
         ))}
