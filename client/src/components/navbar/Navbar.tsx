@@ -6,6 +6,7 @@ import { v4 } from "uuid";
 import Logo from "./../../assets/svg/VSF.svg";
 import Arrow from "./../../assets/svg/arrow.svg";
 import Cart from "./../../assets/svg/Empty Cart.svg";
+import { useCartItemsContext } from "../../context/CartItemsContext";
 
 const Navbar = () => {
   const {
@@ -17,6 +18,7 @@ const Navbar = () => {
     setChosenCategory,
   } = useCategoriesAndPricesContext();
   const [showCurrencies, setShowCurrencies] = useState<boolean>(false);
+  const { savedItems } = useCartItemsContext();
 
   return (
     <div className="h-[60px] flex items-center justify-between fixed text-[#1d1f22] top-0 bg-white w-full">
@@ -48,7 +50,11 @@ const Navbar = () => {
           <img src={Arrow} alt="Arrow" />
           <img src={Cart} alt="Cart" className="ml-[22px] cursor-pointer" />
 
-          {/* Logic for implementing how many items are in the cart */}
+          {savedItems.length > 0 && (
+            <h1 className="bg-[#1d1f22] text-white translate-x-[-7px] translate-y-[-7px] rounded-full text-[14p] w-[20px] flex justify-center items-center h-[20px] ">
+              {savedItems.length}
+            </h1>
+          )}
         </div>
 
         {showCurrencies && (
