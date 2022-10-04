@@ -6,7 +6,7 @@ const CartPageLeft = ({ item }: { item: CartpageLeft }) => {
   const { chosenSymbol } = useCategoriesAndPricesContext();
 
   return (
-    <div>
+    <div className="mt-[15px]">
       <h1 className="text-[30px] leading-[27px] mb-[24px] font-semibold">
         {item.brand}
       </h1>

@@ -1,5 +1,5 @@
 import React from "react";
-import { CartPageLeft } from "../components";
+import { CartPageLeft, CartPageNumber } from "../components";
 import { useCartItemsContext } from "../context/CartItemsContext";
 import { v4 } from "uuid";
 
@@ -14,8 +14,15 @@ const CartPage = () => {
 
       {savedItems.length > 0 &&
         savedItems.map((item) => (
-          <div className="w-full border-y-[1px] border-[#e5e5e5] flex justify-between">
-            <CartPageLeft item={item} key={v4()} />
+          <div
+            key={v4()}
+            className="w-full border-y-[1px] border-[#e5e5e5] flex justify-between"
+          >
+            <CartPageLeft item={item} />
+
+            <div className="flex">
+              <CartPageNumber amount={item.amount!} id={item._id} />
+            </div>
           </div>
         ))}
     </div>

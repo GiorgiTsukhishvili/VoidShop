@@ -23,4 +23,5 @@ export interface CartItemsInterface {
   savedItems: CartItems[];
   addItemToCart: (item: CartItems) => void;
   removeItemFromCart: (id: string) => void;
+  addAmountOfItems: (id: string) => void;
 }
