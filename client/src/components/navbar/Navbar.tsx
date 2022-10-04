@@ -43,7 +43,7 @@ const Navbar = () => {
             className="text-[18px] font-semibold pointer mr-2.5 cursor-pointer"
             onClick={() => setShowCurrencies((prevState) => !prevState)}
           >
-            {currencies.length > 0 && currencies[0].symbol}
+            {currencies.length > 0 && chosenSymbol}
           </h1>
           <img src={Arrow} alt="Arrow" />
           <img src={Cart} alt="Cart" className="ml-[22px] cursor-pointer" />

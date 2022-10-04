@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar } from "./components";
 import { Route, Routes } from "react-router-dom";
-import { MainPage, OneProductPage } from "./pages";
+import { CartPage, MainPage, OneProductPage } from "./pages";
 
 const App = () => {
   return (
@@ -10,6 +10,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/product/:id" element={<OneProductPage />} />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </div>
   );
