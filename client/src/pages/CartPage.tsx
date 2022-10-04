@@ -1,5 +1,10 @@
 import React from "react";
-import { CartPageImages, CartPageLeft, CartPageNumber } from "../components";
+import {
+  CartPageImages,
+  CartPageLeft,
+  CartPageNumber,
+  CartPageTotal,
+} from "../components";
 import { useCartItemsContext } from "../context/CartItemsContext";
 import { v4 } from "uuid";
 
@@ -26,6 +31,8 @@ const CartPage = () => {
             </div>
           </div>
         ))}
+
+      {savedItems.length > 0 && <CartPageTotal />}
     </div>
   );
 };
