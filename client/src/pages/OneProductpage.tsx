@@ -3,9 +3,12 @@ import { useParams } from "react-router-dom";
 import * as api from "./../api";
 import { OneProducItem } from "./pagesInterfaces/oneProductInterface";
 import { v4 } from "uuid";
+import { useCategoriesAndPricesContext } from "../context/CategoriesAndPricesContext";
 
 const OneProductpage = () => {
   const { id } = useParams();
+
+  const { chosenSymbol } = useCategoriesAndPricesContext();
 
   const [product, setProduct] = useState<OneProducItem>();
   const [displayedImage, setDisplayedImage] = useState<string>("");
@@ -31,6 +34,7 @@ const OneProductpage = () => {
             alt="Products"
             key={v4()}
             className="cursor-pointer w-[80px] h-[80px] object-cover"
+            onClick={() => setDisplayedImage(image)}
           />
         ))}
       </div>
@@ -45,6 +49,32 @@ const OneProductpage = () => {
             OUT OF STOCK
           </h1>
         )}
+      </div>
+
+      <div className="ml-[100px]">
+        <h1 className="font-semibold text-[30px] leading-[27px] mb-[16px]">
+          {product.brand}
+        </h1>
+
+        <h1 className="font-normal mb-[43px] text-[30px] leading-[27px]">
+          {product.name}
+        </h1>
+
+        <h1 className=" uppercase font-bold mb-[36px] text-[18px] leading-[18px]">
+          Price:{" "}
+        </h1>
+        <p className="text-[24px] leading-[18px] font-bold mb-[25px]">
+          {chosenSymbol}{" "}
+          {product.prices
+            .filter((item) => item.currency.symbol === chosenSymbol)[0]
+            .amount.toFixed(2)}
+        </p>
+
+        <button className="uppercase w-[292px] h-[52px] bg-[#5ece7b] font-semibold text-[16px] leading-[120%] text-white cursor-pointer mt-[30px] mb-[40px]">
+          Add to cart
+        </button>
+
+        <h1 className="text-[20px] font-medium">{product.description}</h1>
       </div>
     </div>
   ) : (
