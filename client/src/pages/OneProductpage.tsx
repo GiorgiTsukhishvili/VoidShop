@@ -4,9 +4,11 @@ import * as api from "./../api";
 import { OneProducItem } from "./pagesInterfaces/oneProductInterface";
 import { v4 } from "uuid";
 import { useCategoriesAndPricesContext } from "../context/CategoriesAndPricesContext";
+import { useCartItemsContext } from "../context/CartItemsContext";
 
 const OneProductpage = () => {
   const { id } = useParams();
+  const { addItemToCart } = useCartItemsContext();
 
   const { chosenSymbol } = useCategoriesAndPricesContext();
 
@@ -27,13 +29,13 @@ const OneProductpage = () => {
 
   return product !== undefined ? (
     <div className="mt-[160px] mr-[220px] mb-[170px] ml-[100px] text-[#1d1f22] flex">
-      <div className="flex flex-col gap-[40px] w-[80px] h-[511px] overflow-y-auto overflow-x-hidden images">
+      <div className="flex flex-col gap-[40px] min-w-[80px] h-[511px] overflow-y-auto overflow-x-hidden images">
         {product.gallery.map((image) => (
           <img
             src={image}
             alt="Products"
             key={v4()}
-            className="cursor-pointer w-[80px] h-[80px] object-cover"
+            className="cursor-pointer min-w-[80px] h-[80px] object-cover"
             onClick={() => setDisplayedImage(image)}
           />
         ))}
@@ -42,10 +44,10 @@ const OneProductpage = () => {
         <img
           src={displayedImage}
           alt="Product"
-          className="w-[610px] h-[511px] ml-[40px] object-cover"
+          className="w-[610px] min-w-[300px] h-[511px] ml-[40px] object-cover"
         />
         {product.inStock !== "true" && (
-          <h1 className="absolute font-normal text-[40px] leading-[160%] text-[#8d8f9a] translate-x-[220px] translate-y-[-300px]">
+          <h1 className="absolute font-normal text-[40px] leading-[160%] text-[#8d8f9a] translate-x-[130px] translate-y-[-300px]">
             OUT OF STOCK
           </h1>
         )}
@@ -70,7 +72,11 @@ const OneProductpage = () => {
             .amount.toFixed(2)}
         </p>
 
-        <button className="uppercase w-[292px] h-[52px] bg-[#5ece7b] font-semibold text-[16px] leading-[120%] text-white cursor-pointer mt-[30px] mb-[40px]">
+        <button
+          className="uppercase w-[292px] h-[52px] bg-[#5ece7b] font-semibold text-[16px] leading-[120%] text-white cursor-pointer mt-[30px] mb-[40px]"
+          onClick={() => addItemToCart(product)}
+          disabled={product.inStock !== "true"}
+        >
           Add to cart
         </button>
 

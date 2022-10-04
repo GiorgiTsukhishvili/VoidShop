@@ -49,7 +49,9 @@ const Products = ({ product }: { product: ProductsItems }) => {
           alt="Cart"
           className="absolute cursor-pointer translate-x-[280px] translate-y-[-230px]"
           onMouseEnter={() => setIsHovering(true)}
-          onClick={() => addItemToCart(product)}
+          onClick={
+            product.inStock === "true" ? () => addItemToCart(product) : () => {}
+          }
         />
       )}
     </div>
