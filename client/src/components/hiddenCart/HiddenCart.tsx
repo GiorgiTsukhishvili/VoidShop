@@ -3,12 +3,14 @@ import { useCartItemsContext } from "../../context/CartItemsContext";
 import { useCategoriesAndPricesContext } from "../../context/CategoriesAndPricesContext";
 import { HiddenCartprops } from "./hiddenCartInterface";
 import { v4 } from "uuid";
+import { Link } from "react-router-dom";
 
 import AddButton from "./../../assets/svg/plus-square-small.svg";
 import RemoveButton from "./../../assets/svg/minus-square-small.svg";
 
 const HiddenCart = ({ hide }: HiddenCartprops) => {
-  const { savedItems } = useCartItemsContext();
+  const { savedItems, addAmountOfItems, removeItemFromCart } =
+    useCartItemsContext();
   const { chosenSymbol } = useCategoriesAndPricesContext();
 
   const totalItems = savedItems.reduce(
@@ -50,11 +52,11 @@ const HiddenCart = ({ hide }: HiddenCartprops) => {
                   </h1>
                   <p className="text-[16px] leading-[160%] font-medium">
                     {chosenSymbol}
-                    {item.prices
-                      .filter(
+                    {(
+                      +item.prices.filter(
                         (item) => item.currency.symbol === chosenSymbol
-                      )[0]
-                      .amount.toFixed(2)}
+                      )[0].amount * item.amount!
+                    ).toFixed(2)}
                   </p>
                 </div>
 
@@ -64,14 +66,16 @@ const HiddenCart = ({ hide }: HiddenCartprops) => {
                       src={AddButton}
                       alt="Add Button"
                       className="cursor-pointer"
+                      onClick={() => addAmountOfItems(item._id)}
                     />
                     <h1 className="text-[16px] leading-[160%] font-medium">
-                      {totalItems}
+                      {item.amount}
                     </h1>
                     <img
                       src={RemoveButton}
                       alt="Remove Button"
                       className="cursor-pointer"
+                      onClick={() => removeItemFromCart(item._id)}
                     />
                   </div>
                   <img
@@ -83,6 +87,33 @@ const HiddenCart = ({ hide }: HiddenCartprops) => {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="flex justify-between mt-[16px] items-center">
+          <h1 className="text-[16px] font-medium leading-[18px]">
+            Total Items: {totalItems}
+          </h1>
+          <p className="text-[16px] font-bold leading-[160%]">
+            {chosenSymbol} {totalItemsPrice}
+          </p>
+        </div>
+
+        <div className="mt-[16px] mb-[32px] text-[14px] font-semibold leading-[120%] flex justify-center">
+          <Link
+            to={"/cart"}
+            onClick={() => hide(false)}
+            className="text-[#1d1f22] py-[16px] px-[32px] border-[2px] border-[#1d1f22]"
+          >
+            VIEW BAG
+          </Link>
+
+          <Link
+            to={"/"}
+            onClick={() => hide(false)}
+            className="text-white py-[16px] ml-[12px] px-[32px] border-[2px] border-[#5ece7b] bg-[#5ece7b]"
+          >
+            CHECK OUT
+          </Link>
         </div>
       </div>
     </div>
